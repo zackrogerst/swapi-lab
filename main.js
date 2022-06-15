@@ -5,11 +5,14 @@ let myDiv = document.getElementById("myDiv")
 
 let myUrl = "https://swapi.dev/api/planets/?search=Alderaan"
 
+const clearDiv = () => myDiv.innerHTML = ``;
+
 const clickHandler = () => {
+    clearDiv();
     // console.log("button clicked");
     axios.get(`${myUrl}`)
         .then(res => {
-            let residentArr = res.data.results[0].residents
+            let residentArr = res.data.results[0].residents;
             for (let i = 0; i < residentArr.length; i++) {
                 axios.get(residentArr[i])
                     .then(res => {
@@ -21,4 +24,4 @@ const clickHandler = () => {
         })
 }
 
-residentsBtn.addEventListener("click", clickHandler)
+residentsBtn.addEventListener("click", clickHandler);
